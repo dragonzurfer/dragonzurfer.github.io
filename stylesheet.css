@@ -1,0 +1,84 @@
+body
+{
+  background-color: #383838;
+}
+#div1
+{
+  background-image: url('qo.jpg');
+  min-height: 645px;
+  min-width: 100%;
+   background-attachment:fixed;
+   background-position: center;
+   text-align: center;
+
+}
+
+#div2
+{
+  background-color:#F0F0F0  ;
+  min-height: 645px;
+  min-width: 100%;
+   background-attachment: scroll;
+   background-position: center;
+
+}
+#para1
+{
+  text-align: center;
+  vertical-align: middle;
+  font-size:1.5em;
+  text-align: center;
+  line-height: 100px;
+  display: table-cell;
+  vertical-align: middle;
+  color: #333333;
+  font-family: ‘Courier New’, Courier, monospace;
+
+}
+
+#div3
+{
+  background-image: url('po.jpg');
+  min-height: 645px;
+  min-width: 100%;
+   background-attachment: fixed;
+   background-position: center;
+   text-align: center;
+
+}
+
+#intro {
+    padding: 5px;
+    width:40%;
+    min-height:50px;
+    position: absolute;
+    text-align: center;
+    font-size:2em;
+    font-family: monospace;
+    vertical-align: middle;
+    line-height: 50px;
+    top: 45%;
+    right: 30%;
+    color: rgb(248,248,248) ;
+    background-color: rgba(0,0,0,0.7);
+    
+}
+
+.bg{
+  background-image: url('t.jpg');
+  min-height: 500px;
+   background-attachment: fixed;
+   background-position: center;
+   text-align: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.bg2{
+  background-image: url('p.jpg');
+  min-height: 500px;
+   background-attachment: fixed;
+   text-align: justify;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
