@@ -1,3 +1,3 @@
 $(document).ready(function(){
-$("#intro").animate({left:'400px'},3000);
+$("#intro").animate({left:'400px'},"slow");
 });
