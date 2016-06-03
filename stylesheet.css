@@ -59,6 +59,8 @@ body
     line-height: 50px;
     top: 45%;
     right: 30%;
+    color: rgb(248,248,248) ;
+    background-color: rgba(0,0,0,0.7);
     animation-duration: .6s;
     animation-name: fadeAndScale;
     animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
@@ -66,6 +68,7 @@ body
     background-color: rgba(0,0,0,0.7);
 
 }
+
 @keyframes fadeAndScale {
     from {
         opacity: 0;
