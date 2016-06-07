@@ -1,0 +1,110 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <title>SHREE</title>
+  <script src="utility.js" type="text/javascript"></script>
+  <script src="keyboard.js" type="text/javascript"></script>
+  <script src="anim.js" type="text/javascript"></script>
+  <script src="world.js" type="text/javascript"></script>
+  <script src="spritesheet.js" type="text/javascript"></script>
+  <script src="4.js" type="text/javascript"></script>
+
+  <script src="4s.js" type="text/javascript"></script>
+
+  </head>
+<body>
+  <canvas id="game" width="1300" height="600"></canvas>
+<script>
+var start=false;
+var BLOCK_W=32;
+var BLOCK_H=32;
+var w=124;
+var h=92;
+var x2=0;
+var y2=0;
+var spacestart=false;
+var t=4;
+var translate=600;
+var translate2=translate+1300;
+var translate3=translate2+500;
+var x2=0;var y2=0;
+var spacedone=false;
+var manx=60;
+var secret=1;
+var many=285;
+var wall=new Sprite("anotheronoff.PNG",32,32);
+var water=new Sprite("water.png",32,32);
+var man=new Sprite("still.png",62,60);
+var manstill=new Sprite("still.png",62,60);
+var manrun=new Sprite("run.png",72,60);
+var bg= new Sprite("block.png",80,80);
+
+$(document).ready(function(){
+  Context=new HTML("game",1300,600);
+  InitializeKeyboard();
+  DisableScrollbars();
+});
+
+
+
+$(window).load(function(){
+});
+
+function render(){
+ResetAnimationCounter();
+
+//animation
+
+  Context.context.clearRect(0,0,1300,600);
+DrawMap();
+
+if(start)
+{
+  secret=0;
+
+  wall.draw(translate-=3,310,32,32);
+  wall.draw(translate2-=5,310,32,32);
+  wall.draw(translate3-=5,310,32,32);
+  if(translate<-2000)
+  translate=600;
+  if(translate2<-1000)
+  translate2=translate+1300;
+  if(translate3<-500)
+  translate3=translate2+1300;
+  wall.draw(200,310,32,32);
+  if(spacestart)
+  {
+  many-=t;
+  console.log(many);
+  manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5,6,7]);
+  if(many<220)
+  {
+  t=-4;
+
+  }
+  if(many==285)
+  {
+    t=0;
+    spacestart=false;
+  }
+}
+else {
+
+      manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5,6,7]);
+
+}
+}
+else{
+  manstill.drawAnimated(manx,many,[0,1,2,3]);
+}
+
+
+window.requestAnimationFrame(render);
+
+}
+window.requestAnimationFrame(render);
+
+</script>
+</body>
+
+</html>
