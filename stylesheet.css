@@ -80,21 +80,17 @@ body
     }
 }
 
-.bg{
-  background-image: url('t.jpg');
-  min-height: 500px;
-   background-attachment: fixed;
-   background-position: center;
-   text-align: center;
-   background-repeat: no-repeat;
-   background-size: cover;
+a:link, a:visited {
+background-color: #f44336;
+color: white;
+padding:14px 25px;
+text-align: center;
+vertical-align: middle;
+text-decoration: none;
+display: inline-block;
 }
-.bg2{
-  background-image: url('p.jpg');
-  min-height: 500px;
-   background-attachment: fixed;
-   text-align: justify;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
+
+
+a:hover, a:active {
+background-color: green;
 }

@@ -59,7 +59,10 @@ var Sprite = function(fn,w,h) {
       }
 
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e366dd7a1bb7f60c02f7f091ff11f69594a64d4
     this.draw = function(x, y,W,H)
     {
 
@@ -114,6 +117,7 @@ var Sprite = function(fn,w,h) {
         Context.context.restore();
     };
 };
+<<<<<<< HEAD
 var sprite = function(fn,w,h) {
 
     this.TO_RADIANS = Math.PI/180;
@@ -230,3 +234,5 @@ var sprite = function(fn,w,h) {
         Context.context.restore();
     };
 };
+=======
+>>>>>>> 3e366dd7a1bb7f60c02f7f091ff11f69594a64d4
