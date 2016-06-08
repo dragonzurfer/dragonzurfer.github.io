@@ -1,0 +1,116 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <title>SHREE</title>
+  <script src="utility.js" type="text/javascript"></script>
+  <script src="keyboard.js" type="text/javascript"></script>
+  <script src="anim.js" type="text/javascript"></script>
+  <script src="world.js" type="text/javascript"></script>
+  <script src="spritesheet.js" type="text/javascript"></script>
+  <script src="4.js" type="text/javascript"></script>
+  <script src="4w.js" type="text/javascript"></script>
+  <script src="4s.js" type="text/javascript"></script>
+  <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+
+  </head>
+<body>
+  <div id="score"><a href="4.html">__________LEGEND OF BLEACH_________</a></div>
+
+
+  <canvas id="game" width="1300" height="700"></canvas>
+
+<script>
+var start=false;
+var BLOCK_W=32;
+var BLOCK_H=32;
+var w=124;
+var h=92;
+var x2=0;
+var y2=0;
+var spacestart=false;
+var t=4;
+var translate=600;
+var translate2=translate+1300;
+var translate3=translate2+500;
+var translate4=translate3+translate2;
+var x2=0;var y2=0;
+var spacedone=true;
+var manx=60;
+var secret=1;
+var check=false;
+var many=285;
+var wall=new Sprite("anotheronoff.PNG",32,32);
+var water=new Sprite("water.png",32,32);
+var man=new Sprite("still.png",62,60);
+var manstill=new Sprite("still.png",62,60);
+var manjump=new Sprite("jump.png",39,50);
+var manrun=new Sprite("run.png",72,60);
+var bg= new Sprite("block.png",80,80);
+var go=new Sprite("go.png",1300,700);
+
+
+$(document).ready(function(){
+  Context=new HTML("game",1300,600);
+InitializeKeyboard();
+  DisableScrollbars();
+});
+
+
+
+$(window).load(function(){
+});
+
+function render(){
+ResetAnimationCounter();
+
+//animation
+
+
+  Context.context.clearRect(0,0,1300,600);
+
+DrawMap();//background image construction with blocks
+
+if(start)
+{
+  secret=0;//to know that the game has started once atleast
+  if(spacestart)
+  {
+
+    many-=t;
+    console.log(many);
+    manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5,6,7]);
+    if(many<200)
+    {
+        t=-4;
+    }
+    if(many==285)
+    {
+      t=0;
+      spacestart=false;
+      spacedone=true;
+    }
+  }
+  else
+  {
+      manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5,6,7]);//the game has started,man runs now
+  }
+}
+else if(secret)
+{
+  manstill.drawAnimated(manx,many,[0,1,2,3]);//the games has never started,man stays still
+}
+else
+{
+  gameover();
+}
+
+
+window.requestAnimationFrame(render);
+
+}
+window.requestAnimationFrame(render);
+
+</script>
+</body>
+
+</html>
