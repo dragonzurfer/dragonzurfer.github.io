@@ -1,6 +1,7 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
   <title>SHREE</title>
   <script src="utility.js" type="text/javascript"></script>
   <script src="keyboard.js" type="text/javascript"></script>
@@ -8,16 +9,17 @@
   <script src="world.js" type="text/javascript"></script>
   <script src="spritesheet.js" type="text/javascript"></script>
   <script src="4.js" type="text/javascript"></script>
-  <script src="4w.js" type="text/javascript"></script>
+  
   <script src="4s.js" type="text/javascript"></script>
   <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
 
   </head>
 <body>
-  <div id="score"><a href="4.html">__________LEGEND OF BLEACH_________</a></div>
 
+  <div id="score2" ><pre>SCORE                               <button onclick="reset1()"id="button">PLAY</button><pre><div id="score">0</div></div>
 
-  <canvas id="game" width="1300" height="700"></canvas>
+</div>
+  <canvas id="game" onclick="c()" width="1300" height="700"></canvas>
 
 <script>
 var start=false;
@@ -28,17 +30,23 @@ var h=92;
 var x2=0;
 var y2=0;
 var spacestart=false;
-var t=4;
+var s=3;
+var t=6;
 var translate=600;
 var translate2=translate+1300;
 var translate3=translate2+500;
-var translate4=translate3+translate2;
+var t2=7;
+var t3=5;
+var t4;
 var x2=0;var y2=0;
 var spacedone=true;
 var manx=60;
 var secret=1;
 var check=false;
+var score=0;
 var many=285;
+var requestId;
+var jumpcount=0;
 var wall=new Sprite("anotheronoff.PNG",32,32);
 var water=new Sprite("water.png",32,32);
 var man=new Sprite("still.png",62,60);
@@ -46,11 +54,15 @@ var manstill=new Sprite("still.png",62,60);
 var manjump=new Sprite("jump.png",39,50);
 var manrun=new Sprite("run.png",72,60);
 var bg= new Sprite("block.png",80,80);
-var go=new Sprite("go.png",1300,700);
+var go=new Sprite("go.jpg",2000,1000);
+var start=new Sprite("start.jpg",1101,726);
+var special=new sprite("special.png",57,60);
 
 
 $(document).ready(function(){
-  Context=new HTML("game",1300,600);
+mySound = new sound("l.mp3");
+mysound=new sound("m.mp3");
+  Context=new HTML("game",2000,1000);
 InitializeKeyboard();
   DisableScrollbars();
 });
@@ -58,30 +70,66 @@ InitializeKeyboard();
 
 
 $(window).load(function(){
+start.draw(0,0,1101,726);
+Context.context.rect(1101,0,726,1000);
+Context.context.fillStyle="black";
+Context.context.fill();
 });
 
+
+/*
+function gameStateHolder(){
+gameover();
+  if(!newgame)
+  window.requestAnimationFrame(gameStateHolder);
+  else {
+    window.cancelAnimationFrame(gameStateHolder);
+  }
+}
+*/
+function c()
+{
+  document.getElementById("button").textContent="SPACE-BAR TO START";
+}
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
 function render(){
-ResetAnimationCounter();
 
-//animation
+  ResetAnimationCounter();
+
+  Context.context.clearRect(0,0,2000,1000);
 
 
-  Context.context.clearRect(0,0,1300,600);
-
-DrawMap();//background image construction with blocks
+  DrawMap();//background image construction with blocks
 
 if(start)
 {
+
   secret=0;//to know that the game has started once atleast
+  mysound.stop();
+  mySound.play();
+  document.getElementById("score").textContent = Math.floor(score+=0.05);
   if(spacestart)
   {
 
     many-=t;
     console.log(many);
-    manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5,6,7]);
+    manrun.drawAnimated(manx,many+8,[0,1,2,3,4,5]);
     if(many<200)
     {
-        t=-4;
+        t=-6;
     }
     if(many==285)
     {
@@ -97,18 +145,59 @@ if(start)
 }
 else if(secret)
 {
+  t=0;
   manstill.drawAnimated(manx,many,[0,1,2,3]);//the games has never started,man stays still
 }
 else
 {
   gameover();
+  window.cancelAnimationFrame(render);
+   mySound.stop();
+    mysound.play();
+  document.getElementById("button").textContent="PLAY AGAIN";
+}
+requestId=window.requestAnimationFrame(render);
 }
 
 
-window.requestAnimationFrame(render);
-
+function reset1() {
+  console.log(requestId,"pressed reset1");
+    if (requestId) {
+       window.cancelAnimationFrame(requestId);
+       requestId = undefined;
+    }
+    restart();
+    console.log((requestId,"presee start"));
+        if (!requestId) {
+          start=false;
+          document.getElementById("button").textContent="CLICK ON THE GAME";
+           render();
+        }
 }
-window.requestAnimationFrame(render);
+function restart()
+{
+  w=124
+  h=92;
+  x2=0;
+  y2=0;
+  time=14;
+  spacestart=false;
+  t=4;
+  translate=600;
+  translate2=translate+1300;
+  translate3=translate2+500;
+  translate4=translate3+translate2;
+  x2=0;var y2=0;
+  spacedone=true;
+  manx=60;
+   secret=1;
+   check=false;
+   score=0;
+   many=285;
+   time=15;
+}
+
+
 
 </script>
 </body>

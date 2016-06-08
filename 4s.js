@@ -170,8 +170,8 @@ var sprite = function(fn,w,h) {
             this.animationIndexCounter=0;
             this.animationCurrentFrame=spritesheetindex[this.animationIndexCounter];
         }
-        var res=i2xy(this.animationCurrentFrame,2);
-          Context.context.drawImage(this.image, res[0]*w, res[1]*h,w,h, x, y,w,h);
+        var res=i2xy(this.animationCurrentFrame,8);
+          Context.context.drawImage(this.image, res[0]*w, res[1]*h,w,h, x, y,32,32);
       }
 
     };

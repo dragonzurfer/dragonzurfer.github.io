@@ -3,30 +3,50 @@ function DrawMap()
   var x=-32;
   var y=250+92;
 
-
-  for(var i=0;i<40;i++)
+for(var j=0;j<200;j++)
+{
+  for(var i=0;i<50;i++)
   {
-    bg.draw(x+=32,y,32,32);
+    wall.draw(x,y,32,32);
+    x=x+32;
   }
+  y+=31;x=0;
+}
   for(var j=0;j<11;j++)
   {
-  for(var i=0;i<40;i++)
+  for(var i=0;i<50;i++)
   {
     water.draw(i*32,j*31,32,32);
   }}
 //obstacle
 if(start)
 {
- wall.draw(translate-=3,310,32,32);
-  wall.draw(translate2-=11,310,32,32);
-  wall.draw(translate3-=3,310,32,32);
-  wall.draw(translate4-=7,310,32,32);
+  if(jumpcount>5)
+  {
+    jumpcount=0;
+    translate4=1000;
+  }
+
+  if(score==50||score==100||score==200||score==300||score==400)
+  {
+    s+=1;
+    t2+=2;
+    t3+=1;
+  }
+  special.drawAnimated(translate4-=3,310,[0,1,2,3,4,5,6]);
+ wall.draw(translate-=s,310,32,32);
+  wall.draw(translate2-=t2,310,32,32);
+  wall.draw(translate3-=t3,310,32,32);
+
+  if(translate==0||translate2==0||translate3==0){  jumpcount+=1;
+  document.getElementById("score").textContent = Math.floor(score+=10);}
   if(translate<-2000)
-    translate=1300;
+    translate=1000;
   if(translate2<-1000)
-    translate2=1300;
+    translate2=2300;
   if(translate3<-500)
     translate3=1300;
+
 //  if((translate==132&&(many>=240)))
   if(spacestart)
   {
@@ -40,6 +60,8 @@ if(start)
               console.log("many",many);
                 console.log("translate",translate);
                 start=false;
+
+
         }
       }
     }
@@ -54,6 +76,7 @@ else
         console.log("many",many);
         console.log("translate",translate);
         start=false;
+
       }
     }
   }
