@@ -38,7 +38,7 @@ function InitializeKeyboard()
       keyspace=true;
       spacestart=true;
       spacedone=false;
-      t=4;
+      t=6;
       start=true;
     }
   });
