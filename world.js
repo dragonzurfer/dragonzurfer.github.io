@@ -14,7 +14,6 @@ function DrawMap()
   {
     water.draw(32+i*32,j*31,32,32);
   }}
-<<<<<<< HEAD
 //obstacle
 if(start)
 {
@@ -72,7 +71,4 @@ function gameover()
   wall.draw(translate,310,32,32);//previous positions of the blocks
   wall.draw(translate2,310,32,32);//hence helping the player understand jump lengths
   wall.draw(translate3,310,32,32);
-=======
-
->>>>>>> 3e366dd7a1bb7f60c02f7f091ff11f69594a64d4
 }
