@@ -1,96 +1,11 @@
-body
-{
-  background-color: #383838;
+*{
+  padding: 0;
+  margin: 0;
 }
-#div1
+#score
 {
-  background-image: url('qo.jpg');
-  min-height: 645px;
-  min-width: 100%;
-   background-attachment:fixed;
-   background-position: center;
-   text-align: center;
-
-}
-
-#div2
-{
-  background-color:#F0F0F0  ;
-  min-height: 645px;
-  min-width: 100%;
-   background-attachment: scroll;
-   background-position: center;
-
-}
-#para1
-{
-  text-align: center;
-  vertical-align: middle;
-  font-size:1.5em;
-  text-align: center;
-  line-height: 100px;
-  display: table-cell;
-  vertical-align: middle;
-  color: #333333;
+  font-size:160%;
   font-family: ‘Courier New’, Courier, monospace;
-
-}
-
-#div3
-{
-  background-image: url('po.jpg');
-  min-height: 645px;
-  min-width: 100%;
-   background-attachment: fixed;
-   background-position: center;
-   text-align: center;
-
-}
-
-#intro {
-    padding: 5px;
-    width:40%;
-    min-height:50px;
-    position: absolute;
-    text-align: center;
-    font-size:2em;
-    font-family: monospace;
-    vertical-align: middle;
-    line-height: 50px;
-    top: 45%;
-    right: 30%;
-    color: rgb(248,248,248) ;
-    background-color: rgba(0,0,0,0.7);
-    animation-duration: .6s;
-    animation-name: fadeAndScale;
-    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
-    color: rgb(248,248,248) ;
-    background-color: rgba(0,0,0,0.7);
-
-}
-
-@keyframes fadeAndScale {
-    from {
-        opacity: 0;
-        transform: scale(.9, .9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1, 1);
-    }
-}
-
-a:link, a:visited {
-background-color: #f44336;
-color: white;
-padding:14px 25px;
-text-align: center;
-vertical-align: middle;
-text-decoration: none;
-display: inline-block;
-}
-
-
-a:hover, a:active {
-background-color: green;
+  text-decoration: none;
+  background-color: black;
 }

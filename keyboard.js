@@ -33,10 +33,11 @@ function InitializeKeyboard()
     {
       key.downArrow=true;
     }
-    if(e.keyCode==32)
+    if(e.keyCode==32&&spacedone)
     {
       keyspace=true;
       spacestart=true;
+      spacedone=false;
       t=4;
       start=true;
     }
