@@ -25,13 +25,13 @@ var x2=0;
 var y2=0;
 var spacestart=false;
 var s=3;
-var t=6;//gravity factor
+var t=6;
 var translate=1300;
 var translate2=translate+1300;
 var translate3=translate2+500;
-var t2=7;//
-var t3=5;//block speed conroler
-var t4;//
+var t2=7;
+var t3=5;
+var t4;
 var x2=0;var y2=0;
 var spacedone=true;
 var translate4;
@@ -39,7 +39,7 @@ var manx=60;
 var secret=1;
 var check=false;
 var score=0;
-var lo=100;//game speed controller
+var lo=100;
 var many=293;
 var requestId;
 var jumpcount=0;
@@ -54,7 +54,7 @@ var manrun=new Sprite("run.png",72,60);
 var go=new Sprite("go.jpg",2000,1000);
 var start=new Sprite("start.jpg",1101,726);
 var special=new sprite("special.png",57,60);
-
+var special2=new sprite("special2.png",60,60);
 $(document).ready(function(){
 mySound = new sound("l.mp3");
 mysound=new sound("m.mp3");
@@ -99,6 +99,8 @@ function render(){
 
 if(start)
 {
+
+
   if(key.rightArrow&&manx<1000)
   {
   manx=manx+xi;

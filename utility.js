@@ -304,7 +304,7 @@ for(var j=0;j<200;j++)
 //obstacle
 if(start)
 {
-  if(jumpcount>5)
+  if(jumpcount>15)
   {
     jumpcount=0;
     translate4=1000;
@@ -313,19 +313,18 @@ if(start)
   if(score>lo)
   {
     lo+=100;
-    xi+=2;
-    s+=2;
+    xi+=1;
+    s+=1;
     t2+=2;
-    t3+=2;
+    t3+=1;
   }
   special.drawAnimated(translate4-=3,310,[0,1,2,3,4,5,6],32,32,7);
   wall.draw(translate-=s,310,32,32);
   wall.draw(translate2-=t2,310,32,32);
   wall.draw(translate3-=t3,310,32,32);
 
-  if(translate==0||translate2==0||translate3==0)
+  if(translate>-1&&translate<0||translate2>-1&&translate2<0||translate3>-1&&translate3<0)
   {
-  jumpcount+=1;
   document.getElementById("score").textContent = Math.floor(score+=10);
   }
 
@@ -399,6 +398,7 @@ function spaceStart()
   {
     t=0;
     spacestart=false;
+    jumpcount++;
     spacedone=true;
   }
 }
