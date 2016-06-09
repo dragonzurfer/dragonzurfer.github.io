@@ -313,10 +313,10 @@ if(start)
   if(score>lo)
   {
     lo+=100;
-    xi+=2;
-    s+=2;
+    xi+=1;
+    s+=1;
     t2+=2;
-    t3+=2;
+    t3+=1;
   }
   special.drawAnimated(translate4-=3,310,[0,1,2,3,4,5,6],32,32,7);
   wall.draw(translate-=s,310,32,32);
