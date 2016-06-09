@@ -25,13 +25,13 @@ var x2=0;
 var y2=0;
 var spacestart=false;
 var s=3;
-var t=6;
+var t=6;//gravity factor
 var translate=1300;
 var translate2=translate+1300;
 var translate3=translate2+500;
-var t2=7;
-var t3=5;
-var t4;
+var t2=7;//
+var t3=5;//block speed conroler
+var t4;//
 var x2=0;var y2=0;
 var spacedone=true;
 var translate4;
@@ -39,7 +39,7 @@ var manx=60;
 var secret=1;
 var check=false;
 var score=0;
-var lo=10;
+var lo=100;//game speed controller
 var many=293;
 var requestId;
 var jumpcount=0;
@@ -170,7 +170,7 @@ function restart()//resetting all values
   s=3;
   t=6;
   oldscore=50;
-  lo=10;
+  lo=100;
   translate=1300;
   translate2=translate+1300;
   translate3=translate2+500;
