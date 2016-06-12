@@ -1,0 +1,350 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+  <title>SHREE</title>
+
+  </head>
+<body>
+
+  <div id="score" >SCORE<button onclick="reset1()"id="button">PLAY</button></div>
+  <div id="player1">0</div>
+  <div id="player2">0</div>
+</div>
+  <canvas id="game" width="1300" height="700"></canvas>
+</body>
+<style>
+*{
+  padding: 0;
+  margin: 0;
+}
+#button
+{
+  display: block;
+     margin: 0 auto;
+     text-align: center;
+  color:black;
+  font-size: 100%;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  background-color: red;
+}
+#player1,#player2
+{
+  font-size:160%;
+  color:white;
+  font-family: ‘Courier New’, Courier, monospace;
+  text-decoration: none;
+  background-color: black;
+}
+#score
+{
+  font-size:160%;
+  color:white;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  background-color: black;
+}
+  canvas{
+    position: absolute;
+    border: 1px solid white;
+    top: 150;
+    bottom: 0;
+    left: 200;
+    right:0;
+  }
+</style>
+<script>
+
+
+    var requestId;
+    var Keyboard=function(){
+      this. upArrow2=false;
+      this.downArrow2=false;
+      this.upArrow=false;
+      this.downArrow=false;
+    };
+
+    var key_up2=73;
+    var key_down2=75;
+    var key_up=87;
+    var key_down=83;
+    window.key=null;
+
+
+    function InitializeKeyboard()//Keyboard controls
+    {
+      window.key=new Keyboard;
+
+      $(document).keydown(function(e){
+        console.log(e.keyCode);
+        if(e.keyCode==key_up)
+        {
+         key.upArrow=true;
+        }
+
+        if(e.keyCode==key_down)
+        {
+          key.downArrow=true;
+        }
+        if(e.keyCode==key_up2)
+        {
+         key.upArrow2=true;
+        }
+
+        if(e.keyCode==key_down2)
+        {
+          key.downArrow2=true;
+        }
+      });
+
+
+
+    $(document).keyup(function(e){
+
+          if(e.keyCode==key_up)
+          {
+            if(gameover)
+            {
+            gameover=false;
+            restart();
+            }
+            key.upArrow=false;
+          }
+          if(e.keyCode==key_down)
+          {
+            key.downArrow=false;
+          }
+          if(e.keyCode==key_up2)
+          {
+            key.upArrow2=false;
+          }
+          if(e.keyCode==key_down2)
+          {
+            key.downArrow2=false;
+          }
+      });
+
+    }
+      function DisableScrollbars()
+      {
+        document.documentElement.style.overflow='hidden';
+      }
+
+      var HTML={
+        canvas:null,
+        context:null,
+        create: function(canvasid){
+          this.canvas=document.getElementById("game");
+          this.context=this.canvas.getContext("2d");
+          console.log("hi");;
+          return this.context;
+        }
+      };
+    var Sprite=function(filename)
+    {
+      this.image=null;
+
+      if(filename!=undefined)
+      {
+        this.image=new Image();
+        this.image.src=filename;
+      }
+      else {
+        console.log("not loaded");
+      }
+
+      this.draw=function(x,y,w,h)
+      {
+
+              HTML.context.drawImage(this.image,x,y,w,h);
+
+      };
+
+    };
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+            this.sound.play();
+        }
+        this.stop = function(){
+            this.sound.pause();
+        }
+    }
+    var gameover=false;
+    var bary=0;
+    var barx=10;
+    var ctr1speed=5;
+    var ctr2speed=5;
+    var bary2=0;
+    var barx2=1006-19;
+    var ballx=503;
+    var bally=225;
+    var revertx=-5;
+    var reverty=-5;
+    var hit=0;
+    var hitold=10;
+    var player1=0;
+    var player2=0;
+    var bar=new Sprite("bar.png");
+    var bar2=new Sprite("bar.png");
+    var ball=new Sprite("ball.png");
+    var go=new Sprite("gameover.jpg");
+      $(document).mousemove(function(event){
+          if (document.activeElement != document.body) document.activeElement.blur();
+       });
+
+       $(document).ready(function(){
+         HTML.create("game");
+         mySound = new sound("sound.mp3");
+         mySound2 = new sound("sound.mp3");
+         mySound3=new sound("m.mp3");
+         HTML.context.rect(0,0,1006,400);
+         HTML.context.fillStyle="black";
+         HTML.context.fill();
+         InitializeKeyboard();
+         DisableScrollbars();
+
+       });
+
+
+       $(window).load(function(){
+
+       });
+
+
+
+
+       function render(){//game loop
+         if(!gameover)
+         {
+
+           HTML.context.clearRect(0,0,1006,400);
+           HTML.context.fill();
+           if(reverty<0)
+           {
+             if(bally>0)
+             {
+              bally+=reverty;
+              ballx+=revertx;
+            }
+            else
+              reverty=-reverty;
+           }
+
+           if(reverty>0)
+           {
+             if(bally<470-100)
+             {
+              bally+=reverty;
+              ballx+=revertx;
+            }
+            else
+              reverty=-reverty;
+           }
+
+           if(hit==hitold)
+           {
+             hitold+=20;
+             ctr1speed+=2;
+             ctr2speed+=2;
+             if(revertx>=0)
+              revertx++;
+             else
+              revertx--;
+
+             if(reverty>=0)
+              reverty++;
+             else
+              reverty--;
+
+           }
+           if(ballx<=barx+17&&bally<=bary+88&&bally+25>=bary)
+           {
+             revertx=-revertx;
+             hit+=1;
+             mySound.play();
+             document.getElementById("player1").textContent=++player1;
+           }
+           if(ballx>=barx2-25&&bally<=bary2+88&&bally+25>=bary2)
+           {
+             revertx=-revertx;
+             hit+=1;
+             mySound2.play();
+             document.getElementById("player2").textContent=++player2;
+           }
+
+           if(ballx>barx2-10||ballx<barx)
+           gameover=true;
+
+           if(key.upArrow&&bary<412-100)
+           {
+             bary+=ctr1speed;
+           }
+
+           if(key.downArrow&&bary>0)
+           {
+              bary-=ctr1speed;
+            }
+            if(key.upArrow2&&bary2<412-100)
+            {
+              bary2+=ctr2speed;
+            }
+
+            if(key.downArrow2&&bary2>0)
+            {
+              bary2-=ctr2speed;
+            }
+            bar.draw(barx,bary,17,88);
+            bar2.draw(barx2,bary2,17,88);
+            ball.draw(ballx,bally,25,25);
+          }
+          else
+          {
+            HTML.context.clearRect(0,0,1006,400);
+            go.draw(0,0,1081,452);
+            mySound3.play();
+            document.getElementById('button').textContent="w to restart";
+          }
+       requestId=window.requestAnimationFrame(render);
+       }
+
+
+       function reset1() {//function to be called for starting or restarting the game
+
+           if (requestId) {
+              window.cancelAnimationFrame(requestId);
+              requestId = undefined;
+           }
+           restart();
+               if (!requestId) {
+                 start=true;
+                  render();
+               }
+       }
+
+       function restart(){//resetting all values for new game
+         gameover=false;
+         player1=0;
+         player2=0;
+         bary=0;
+         hit=0;
+         hitold=0;
+         barx=10;
+         ctr1speed=5;
+         ctr2speed=5;
+         bary2=0;
+         barx2=1006-19;
+         ballx=503;
+         bally=225;
+         revertx=-5;
+         reverty=-5;
+       }
+
+  </script>
+</html>
