@@ -223,7 +223,8 @@
        function render(){//game loop
          if(!gameover)
          {
-
+            mySound3.pause();
+            document.getElementById("button").textContent="w&s-player1 and i&k-player2";
            HTML.context.clearRect(0,0,1006,400);
            HTML.context.fill();
            if(reverty<0)
