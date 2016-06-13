@@ -65,10 +65,10 @@
       this.downArrow=false;
     };
 
-    var key_up2=75;
-    var key_down2=73;
-    var key_up=83;
-    var key_down=87;
+    var key_up2=73;
+    var key_down2=75;
+    var key_up=87;
+    var key_down=83;
     window.key=null;
 
 
@@ -203,7 +203,7 @@
          HTML.create("game");
          mySound = new sound("sound.mp3");
          mySound2 = new sound("sound.mp3");
-        
+         mySound3=new sound("m.mp3");
          HTML.context.rect(0,0,1006,400);
          HTML.context.fillStyle="black";
          HTML.context.fill();
@@ -223,8 +223,7 @@
        function render(){//game loop
          if(!gameover)
          {
-           
-            document.getElementById("button").textContent="w&s-player1 and i&k-player2";
+
            HTML.context.clearRect(0,0,1006,400);
            HTML.context.fill();
            if(reverty<0)
@@ -265,9 +264,15 @@
               reverty--;
 
            }
+
+           bary2=bally;
+
+
            if(ballx<=barx+17&&bally<=bary+88&&bally+25>=bary)
            {
              revertx=-revertx;
+             ballx+=(revertx+10);
+             bally+=(reverty+10);
              hit+=1;
              mySound.play();
              document.getElementById("player1").textContent=++player1;
@@ -275,13 +280,13 @@
            if(ballx>=barx2-25&&bally<=bary2+88&&bally+25>=bary2)
            {
              revertx=-revertx;
+             ballx-=(revertx+10);
+             bally-=(reverty+10);
              hit+=1;
              mySound2.play();
              document.getElementById("player2").textContent=++player2;
            }
 
-           if(ballx>barx2-10||ballx<barx)
-           gameover=true;
 
            if(key.upArrow&&bary<412-100)
            {
@@ -302,15 +307,22 @@
               bary2-=ctr2speed;
             }
             bar.draw(barx,bary,17,88);
-            bar2.draw(barx2,bary2,17,88);
+            bar2.draw(barx2,bary2-88,17,88);
             ball.draw(ballx,bally,25,25);
+
+           if(ballx>barx2-10||ballx<barx)
+           {
+           gameover=true;
+           console.log("bally:",bally);
+           console.log("bary:",bary2);
+           }
           }
           else
           {
             HTML.context.clearRect(0,0,1006,400);
             go.draw(0,0,1081,452);
-          
-            document.getElementById('button').textContent="s to restart";
+            mySound3.play();
+            document.getElementById('button').textContent="w to restart";
           }
        requestId=window.requestAnimationFrame(render);
        }
